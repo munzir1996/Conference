@@ -16,7 +16,7 @@
     @yield('styles')
 </head>
 
-<body>
+<body style="{{App::islocale('ar')? "text-align: right;":""}}">
 
     @include('includes._navbar')
 

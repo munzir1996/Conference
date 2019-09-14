@@ -5,10 +5,11 @@
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
+            <span class="oi oi-menu"></span> {{__('index.navbarMenu')}}
         </button>
 
-        <div class="collapse navbar-collapse" id="ftco-nav">
+        <div class="collapse navbar-collapse" id="ftco-nav"
+        style="{{App::islocale('ar')? "padding-right: 62%;":""}}">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{Request::is('/')? "active":""}}"><a href="{{route('home')}}" class="nav-link">{{__('index.home')}}</a></li>
                 {{-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> --}}

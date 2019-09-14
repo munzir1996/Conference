@@ -19,5 +19,9 @@ return [
 
 'sendMessage'=>'Send Message',
 
+'question'=>'Would you like to participate in the exhibition or a scientific paper?',
+'yes'=>'Yes',
+'no'=>'No',
+
 ]
 ?>

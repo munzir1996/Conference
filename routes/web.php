@@ -24,3 +24,10 @@ Route::get('language/{lang}', function ($lang) {
 });
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/contact', 'HomeController@contact')->name('contact');
+
+
+Route::prefix('admin')->middleware('auth')->group(function () {
+
+    Route::get('/', 'Admin/HomeController@index')->name('admin');
+
+});

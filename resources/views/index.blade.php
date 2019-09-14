@@ -6,14 +6,12 @@
         padding-top: 50px;
         padding-bottom: 50px;
     }
-
     .swiper-slide {
         background-position: center;
         background-size: cover;
         width: 300px;
         height: 300px;
     }
-
 </style>
 @endsection
 @section('content')
@@ -26,16 +24,16 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
             <div class="col-lg-6 col-md-6 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"> {{ __('index.subtitle') }}
+                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
                     <br><span>{{ __('index.title') }}</span></h1>
-                <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span
-                        class="icon-calendar mr-2"></span>{{ __('index.date') }}</p>
+                {{-- <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span
+                        class="icon-calendar mr-2"></span>{{ __('index.date') }}</p> --}}
 
             </div>
             <div class="col-lg-2 col"></div>
             <div class="col-lg-4 col-md-6 mt-0 mt-md-5">
                 <form action="#" class="request-form ftco-animate">
-                    <h2>{{ __('index.join') }}</h2>
+                    <h2 style="{{App::islocale('ar')? "    text-align: right;":""}}">{{ __('index.join') }}</h2>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="{{ __('index.name') }}">
                     </div>
@@ -46,6 +44,42 @@
                         <input type="text" class="form-control" placeholder="{{ __('index.phone') }}">
                     </div>
                     <div class="form-group">
+                        <input type="text" class="form-control" placeholder="{{ __('index.country') }}">
+                    </div>
+                    <div class="form-group">
+                        <select name="type" class="form-control" required>
+                            <option value="#">
+                                {{ __('index.school') }}
+                            </option>
+                            <option value="#">
+                                {{ __('index.colleage') }}
+                            </option>
+                            <option value="#">
+                                {{ __('index.university') }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="type" class="form-control" required>
+                            <option value="#">
+                                {{ __('index.public') }}
+                            </option>
+                            <option value="#">
+                                {{ __('index.private') }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="{{App::islocale('ar')? "    text-align: right;":""}}">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" class="mr-2">
+                                <a data-toggle="modal" href="#add_state">
+                                    {{ __('index.terms') }}
+                                    </a>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <input type="submit" value="{{ __('index.joinNow') }}" class="btn btn-primary py-3 px-4">
                     </div>
                 </form>
@@ -54,17 +88,36 @@
     </div>
 </div>
 <!-- END  -->
+<!-- BEGIN ADD_state MODEL -->
+<div class="modal fade in" id="add_state">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ __('index.termsConditions') }}</h4>
+            </div>
+            <div class="modal-body">
+                    <p>
+                        {{ __('index.termsDescription') }}
+                    </p>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- END ADD_state MODEL -->
 
 <!-- START Flaticon -->
-<section class="ftco-section services-section bg-primary">
+<section class="ftco-section services-section bg-primary" style="padding: 2em 0;">
     <div class="container">
         <div class="row d-flex">
             <div class="col-md-3 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
                 <div class="media block-6 services d-block">
                     <div class="icon"><span class="flaticon-placeholder"></span></div>
                     <div class="media-body">
-                        <h3 class="heading mb-3">Venue</h3>
-                        <p> 203 Fake St. Mountain View, San Francisco, California, USA</p>
+                        {{-- <h3 class="heading mb-3">Venue</h3> --}}
+                        {{-- <p> 203 Fake St. Mountain View, San Francisco, California, USA</p> --}}
                     </div>
                 </div>
             </div>
@@ -72,8 +125,8 @@
                 <div class="media block-6 services d-block">
                     <div class="icon"><span class="flaticon-world"></span></div>
                     <div class="media-body">
-                        <h3 class="heading mb-3">Transport</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
+                        {{-- <h3 class="heading mb-3">Transport</h3> --}}
+                        {{-- <p>A small river named Duden flows by their place and supplies.</p> --}}
                     </div>
                 </div>
             </div>
@@ -81,8 +134,8 @@
                 <div class="media block-6 services d-block">
                     <div class="icon"><span class="flaticon-hotel"></span></div>
                     <div class="media-body">
-                        <h3 class="heading mb-3">Hotel</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
+                        {{-- <h3 class="heading mb-3">Hotel</h3> --}}
+                        {{-- <p>A small river named Duden flows by their place and supplies.</p> --}}
                     </div>
                 </div>
             </div>
@@ -90,8 +143,8 @@
                 <div class="media block-6 services d-block">
                     <div class="icon"><span class="flaticon-cooking"></span></div>
                     <div class="media-body">
-                        <h3 class="heading mb-3">Restaurant</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
+                        {{-- <h3 class="heading mb-3">Restaurant</h3> --}}
+                        {{-- <p>A small river named Duden flows by their place and supplies.</p> --}}
                     </div>
                 </div>
             </div>
@@ -110,23 +163,64 @@
             <div class="col-md-7 wrap-about py-md-5 ftco-animate fadeInUp ftco-animated">
                 <div class="heading-section mb-5 pt-5 pl-md-5">
                     <div class="pr-md-5 mr-md-5">
-                        <h2 class="mb-4">{{ __('index.about') }}</h2>
+                        <h2 class="mb-4">
+                            {{ __('index.about') }}
+                        </h2>
                     </div>
 
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
-                        is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
-                        would have been rewritten a thousand times and everything that was left from its origin would be
-                        the word "and" and the Little Blind Text should turn around and return to its own, safe country.
-                        But nothing the copy said could convince her and so it didn’t take long until a few insidious
-                        Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their
-                        agency, where they abused her for their.</p>
+                    <p style="{{App::islocale('ar')? "padding-right: 40px;":""}}">bggg.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- END Aboutus -->
+<br>
+<!-- START Tickets -->
+<section class="ftco-section ftco-no-pt">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">{{__('index.ticket')}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ftco-animate">
+                <div class="block-7">
+                    <div class="text-center">
+                        <h2 class="heading">{{__("index.price")}}</h2>
+                        <span class="price"><sup>$</sup> <span class="number">100</span></span>
+
+                        <h3 class="heading-2 my-4">{{__("index.features")}}</h3>
+
+                        <ul class="pricing-text">
+                            <li>{{__("index.feature1")}}</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 ftco-animate">
+                <div class="block-7">
+                    <div class="text-center">
+                        <h2 class="heading">{{__("index.price")}}</h2>
+                        <span class="price"><sup>$</sup> <span class="number">500</span></span>
+
+                        <h3 class="heading-2 my-4">{{__("index.features")}}</h3>
+
+                        <ul class="pricing-text">
+                            <li>{{__("index.feature1")}}</li>
+                            <li>{{__("index.feature2")}}</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END Tickets -->
 <!-- START News -->
 <section class="ftco-section">
     <div class="container">
@@ -142,7 +236,7 @@
                     <a href="blog-single.html" class="block-20"
                         style="background-image: url({{asset('images/image_1.jpg')}});">
                     </a>
-                    <div class="text pt-4">
+                    <div class="text pt-4" style="{{App::islocale('ar')? "    text-align: right;":""}}">
                         <div class="meta mb-3">
                             <div><a href="#">July. 14, 2019</a></div>
                         </div>
@@ -152,36 +246,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                    <a href="blog-single.html" class="block-20"
-                        style="background-image: url({{asset('images/image_2.jpg')}});">
-                    </a>
-                    <div class="text pt-4">
-                        <div class="meta mb-3">
-                            <div><a href="#">July. 14, 2019</a></div>
-                        </div>
-                        <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20"
-                        style="background-image: url({{asset('images/image_3.jpg')}});">
-                    </a>
-                    <div class="text pt-4">
-                        <div class="meta mb-3">
-                            <div><a href="#">July. 14, 2019</a></div>
-                        </div>
-                        <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        </p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>
