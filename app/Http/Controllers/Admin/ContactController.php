@@ -15,7 +15,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::latest()->get();
+
+        return view('admin.contacts.index')->withContacts($contacts);
     }
 
     /**
@@ -47,7 +49,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('admin.contacts.show')->withContact($contact);
     }
 
     /**
@@ -81,6 +83,14 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        if ($contact->delete()) {
+            session()->flash('success', 'تم الحذف بنجاح');
+
+            return redirect()->route('contacts.index');
+        } else {
+            session()->flash('error', 'حصل خطاء اثناء الحذف');
+
+            return redirect()->route('contacts.index');
+        }
     }
 }

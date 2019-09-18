@@ -15,7 +15,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::all();
+
+        return view('admin.members.index')->withMembers($members);
     }
 
     /**
@@ -36,7 +38,24 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'email' => 'email',
+            'phone' => 'required',
+            'country' => 'required',
+            'education' => 'required',
+            'type' => 'required',
+        ]);
+
+        if (Member::create($data)) {
+            session()->flash('success', 'تمت الاضافة بنجاح');
+
+            return redirect()->route('members.index');
+        } else {
+            session()->flash('error', 'حصل خطاء اثناء الأضافة');
+
+            return redirect()->route('members.index');
+        }
     }
 
     /**
@@ -58,7 +77,7 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        return view('admin.members.edit')->withMember($member);
     }
 
     /**
@@ -70,7 +89,31 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'email',
+            'phone' => 'required',
+            'country' => 'required',
+            'education' => 'required',
+            'type' => 'required',
+        ]);
+
+        $member->name = $request->name;
+        $member->email = $request->email;
+        $member->phone = $request->phone;
+        $member->country = $request->country;
+        $member->education = $request->education;
+        $member->type = $request->type;
+
+        if ($member->save()) {
+            session()->flash('success', 'تمت الاضافة بنجاح');
+
+            return redirect()->route('members.index');
+        } else {
+            session()->flash('error', 'حصل خطاء اثناء الأضافة');
+
+            return redirect()->route('members.index');
+        }
     }
 
     /**
@@ -81,6 +124,14 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        if ($member->delete()) {
+            session()->flash('success', 'تم الحذف بنجاح');
+
+            return redirect()->route('blogs.index');
+        } else {
+            session()->flash('error', 'حصل خطاء اثناء الحذف');
+
+            return redirect()->route('blogs.index');
+        }
     }
 }

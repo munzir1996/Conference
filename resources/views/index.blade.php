@@ -17,7 +17,7 @@
 @section('content')
 <!-- START  -->
 
-
+{{-- {{App::getLocale()}} --}}
 {{-- {{ App::getlocale()}} --}}
 <div class="hero-wrap" style="background-image: url({{asset('images/bg_a.jpg')}});" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -32,39 +32,40 @@
             </div>
             <div class="col-lg-2 col"></div>
             <div class="col-lg-4 col-md-6 mt-0 mt-md-5">
-                <form action="#" class="request-form ftco-animate">
+                <form action="{{route('member')}}" class="request-form ftco-animate" method="POST">
+                    @csrf
                     <h2 style="{{App::islocale('ar')? "    text-align: right;":""}}">{{ __('index.join') }}</h2>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="{{ __('index.name') }}">
+                        <input type="text" name="name" class="form-control" placeholder="{{ __('index.name') }}" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="{{ __('index.email') }}">
+                        <input type="email" name="email" class="form-control" placeholder="{{ __('index.email') }}" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="{{ __('index.phone') }}">
+                        <input type="text" name="phone" class="form-control" placeholder="{{ __('index.phone') }}" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="{{ __('index.country') }}">
+                        <input type="text" name="country" class="form-control" placeholder="{{ __('index.country') }}" required>
                     </div>
                     <div class="form-group">
-                        <select name="type" class="form-control" required>
-                            <option value="#">
+                        <select name="education" class="form-control" required>
+                            <option value="{{ __('index.school') }}">
                                 {{ __('index.school') }}
                             </option>
-                            <option value="#">
+                            <option value="{{ __('index.colleage') }}">
                                 {{ __('index.colleage') }}
                             </option>
-                            <option value="#">
+                            <option value="{{ __('index.university') }}">
                                 {{ __('index.university') }}
                             </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <select name="type" class="form-control" required>
-                            <option value="#">
+                            <option value="{{ __('index.public') }}">
                                 {{ __('index.public') }}
                             </option>
-                            <option value="#">
+                            <option value="{{ __('index.private') }}">
                                 {{ __('index.private') }}
                             </option>
                         </select>
@@ -72,7 +73,7 @@
                     <div class="form-group" style="{{App::islocale('ar')? "    text-align: right;":""}}">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="" class="mr-2">
+                                <input type="checkbox" value="" class="mr-2" required>
                                 <a data-toggle="modal" href="#add_state">
                                     {{ __('index.terms') }}
                                     </a>
@@ -168,7 +169,9 @@
                         </h2>
                     </div>
 
-                    <p style="{{App::islocale('ar')? "padding-right: 40px;":""}}">bggg.</p>
+                    <p style="{{App::islocale('ar')? "padding-right: 40px;":""}}">
+                        {{$setting['about_'.App::getLocale()]}}
+                    </p>
                 </div>
             </div>
         </div>
@@ -231,21 +234,26 @@
         </div>
 
         <div class="row d-flex">
+            @foreach ($blogs as $blog)
             <div class="col-md-4 d-flex ftco-animate">
                 <div class="blog-entry justify-content-end">
-                    <a href="blog-single.html" class="block-20"
-                        style="background-image: url({{asset('images/image_1.jpg')}});">
-                    </a>
-                    <div class="text pt-4" style="{{App::islocale('ar')? "    text-align: right;":""}}">
-                        <div class="meta mb-3">
-                            <div><a href="#">July. 14, 2019</a></div>
+                    <img src="{{asset('images/'.$blog->photo)}}" alt="" srcset="">
+                    <div class="text pt-4" style="{{App::islocale('ar')? "text-align: right;":""}}">
+                            <div class="meta mb-3">
+                            <div><a href="#">{{date('M j, Y', strtotime($blog->created_at))}}</a></div>
                         </div>
-                        <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                        <h3 class="heading mt-2">
+                            <a href="#">
+                            {{$blog->title_ar}}
+                            </a>
+                        </h3>
+                        <p>
+                            {!! $blog['description_'.App::getLocale()] !!}
                         </p>
                     </div>
                 </div>
             </div>
+            @endforeach
 
         </div>
     </div>
@@ -264,26 +272,10 @@
                     <!-- Swiper -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
+                            @foreach ($sponsers as $sponser)
+                            <div class="swiper-slide" style="background-image: url({{asset('images/'.$sponser->photo)}});">
                             </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
-                            <div class="swiper-slide" style="background-image: url({{asset('images/OmegaTeam.jpg')}});">
-                            </div>
+                            @endforeach
                         </div>
                         <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="{{route('home')}}">
-            <img src="{{asset('images/logo.png')}}" style="width: 140px;">
+            <img src="{{asset('images/'.$setting['logo_'.App::getLocale()])}}" style="width: 140px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">

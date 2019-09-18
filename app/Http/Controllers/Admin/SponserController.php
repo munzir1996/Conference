@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Sponser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Purifier;
+use Image;
+use Storage;
+use File;
 class SponserController extends Controller
 {
     /**
@@ -15,7 +18,9 @@ class SponserController extends Controller
      */
     public function index()
     {
-        //
+        $sponsers = Sponser::all();
+
+        return view('admin.sponsers.index')->withSponsers($sponsers);
     }
 
     /**
@@ -36,7 +41,27 @@ class SponserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'photo' => 'required',
+        ]);
+
+        $image = $request->file('photo');
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('images/'.$filename);
+        Image::make($image)->resize(300, 300)->save($location);
+
+        $data['photo'] = $filename;
+
+        if (Sponser::create($data)) {
+            session()->flash('success', 'تمت الاضافة بنجاح');
+
+            return redirect()->route('sponsers.index');
+        } else {
+            session()->flash('error', 'حصل خطاء اثناء الأضافة');
+
+            return redirect()->route('sponsers.index');
+        }
     }
 
     /**
@@ -58,7 +83,7 @@ class SponserController extends Controller
      */
     public function edit(Sponser $sponser)
     {
-        //
+        return view('admin.sponsers.edit')->withSponser($sponser);
     }
 
     /**
@@ -70,7 +95,36 @@ class SponserController extends Controller
      */
     public function update(Request $request, Sponser $sponser)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'photo' => 'sometimes',
+        ]);
+
+        $sponser->name = $request->name;
+
+        if($request->hasFile('photo')){
+            //Add the new photo
+            $image = $request->file('photo');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/'.$filename);
+            Image::make($image)->resize(450, 355)->save($location);
+            $oldFilename = $sponser['photo'];
+            //Update the database
+            $sponser['photo'] = $filename;
+            //Delete the image
+            File::delete('images/'.$oldFilename);
+        }
+
+        if ($sponser->save()) {
+            session()->flash('success', 'تمت الاضافة بنجاح');
+
+            return redirect()->route('sponsers.index');
+
+        } else {
+            session()->flash('error', 'حصل خطاء اثناء الأضافة');
+
+            return redirect()->route('sponsers.index');
+        }
     }
 
     /**
@@ -81,6 +135,14 @@ class SponserController extends Controller
      */
     public function destroy(Sponser $sponser)
     {
-        //
+        if ($sponser->delete()) {
+            session()->flash('success', 'تم الحذف بنجاح');
+
+            return redirect()->route('sponsers.index');
+        } else {
+            session()->flash('error', 'حصل خطاء اثناء الحذف');
+
+            return redirect()->route('sponsers.index');
+        }
     }
 }

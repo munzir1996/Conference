@@ -23,11 +23,18 @@ Route::get('language/{lang}', function ($lang) {
     return back();
 });
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/members', 'HomeController@member')->name('member');
 Route::get('/contact', 'HomeController@contact')->name('contact');
-
+Route::post('/join', 'HomeController@join')->name('join');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
 
-    Route::get('/', 'Admin/HomeController@index')->name('admin');
+    Route::get('/', 'Admin\HomeController@index')->name('admin');
+    Route::resource('/users', 'Admin\UserController');
+    Route::resource('/sponsers', 'Admin\SponserController');
+    Route::resource('/blogs', 'Admin\BlogController');
+    Route::resource('/members', 'Admin\MemberController');
+    Route::resource('/contacts', 'Admin\ContactController');
+    Route::resource('/settings', 'Admin\SettingController');
 
 });

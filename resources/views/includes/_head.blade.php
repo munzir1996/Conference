@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="{{asset('vendor/css/flaticon.css')}}">
 <link rel="stylesheet" href="{{asset('vendor/css/icomoon.css')}}">
 <link rel="stylesheet" href="{{asset('vendor/css/style.css')}}">
+<link href="{{asset('vendor/admincss/toastr-rtl.min.css')}}" rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css">
