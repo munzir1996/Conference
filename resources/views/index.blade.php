@@ -12,6 +12,12 @@
         width: 300px;
         height: 300px;
     }
+    .ftco-section {
+    padding: 3em 0;
+    }
+    .ftco-animate{
+        text-align: center;
+    }
 </style>
 @endsection
 @section('content')
@@ -113,7 +119,7 @@
 <section class="ftco-section services-section bg-primary" style="padding: 2em 0;">
     <div class="container">
         <div class="row d-flex">
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+            <div class="col-md-3 ftco-animate fadeInUp ftco-animated">
                 <div class="media block-6 services d-block">
                     <div class="icon"><span class="flaticon-placeholder"></span></div>
                     <div class="media-body">
@@ -122,7 +128,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+            <div class="col-md-3 ftco-animate fadeInUp ftco-animated">
                 <div class="media block-6 services d-block">
                     <div class="icon"><span class="flaticon-world"></span></div>
                     <div class="media-body">
@@ -131,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+            <div class="col-md-3 ftco-animate fadeInUp ftco-animated">
                 <div class="media block-6 services d-block">
                     <div class="icon"><span class="flaticon-hotel"></span></div>
                     <div class="media-body">
@@ -140,7 +146,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
+            <div class="col-md-3 ftco-animate fadeInUp ftco-animated">
                 <div class="media block-6 services d-block">
                     <div class="icon"><span class="flaticon-cooking"></span></div>
                     <div class="media-body">
