@@ -115,11 +115,14 @@ class SettingController extends Controller
         }
 
         if ($setting->save()) {
+            return response()->json([],222);
             session()->flash('success', 'تمت الاضافة بنجاح');
 
             return redirect()->route('settings.index');
 
         } else {
+            return response()->json([],222);
+
             session()->flash('error', 'حصل خطاء اثناء الأضافة');
 
             return redirect()->route('settings.index');

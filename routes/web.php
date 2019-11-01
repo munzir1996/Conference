@@ -19,7 +19,6 @@ Route::get('language/{lang}', function ($lang) {
 
     // App::setlocale($lang);
 
-
     return back();
 });
 Route::get('/', 'HomeController@index')->name('home');

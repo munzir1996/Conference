@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Sponser::class, function (Faker $faker) {
     return [
-        //
+        'name' => 'sponser',
+        'photo' => 'avatar.jpg',
     ];
 });
